@@ -248,21 +248,19 @@ at3.WorldCFrame = camera.CFrame * cf1
 	rightup.CFrame = planeCF2 * CFrame.new(0,-0.25,0) * shoulderAngleCFrame2 * CFrame.new(upper2V3 * -0.5) * CFrame.new(0,0,0.25)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 end)
+align3.RigidityEnabled = true
+align.RigidityEnabled = true
 hand.Touched:Connect(function()
 align.ReactionForceEnabled = true
-align.RigidityEnabled = false
 end)
 hand.TouchEnded:Connect(function()
 align.ReactionForceEnabled = false
-align.RigidityEnabled = true
 end)
 hand2.Touched:Connect(function()
 align3.ReactionForceEnabled = true
-align3.RigidityEnabled = false
 end)
 hand2.TouchEnded:Connect(function()
 align3.ReactionForceEnabled = false
-align3.RigidityEnabled = true
 end)
 workspace.CurrentCamera.HeadScale = 1.5
 game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
