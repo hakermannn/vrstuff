@@ -198,6 +198,7 @@ align5.Attachment0 = at4
 align5.Attachment1 = at5
 align5.RigidityEnabled = true
 local count = 0
+camera = workspace.CurrentCamera
 cf = hand.CFrame:Inverse() * camera.CFrame
 cf1 = hand2.CFrame:Inverse() * camera.CFrame
 function solveIK(originCF, targetPos, l1, l2)	
