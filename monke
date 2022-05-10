@@ -52,6 +52,7 @@ local mesh5 = Instance.new("SpecialMesh",lefthand)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9570282205"
 mesh5.Scale = Vector3.new(6,6,6)
+mesh5.Offset = Vector3.new(0,0,0.375)
 local mesh5 = Instance.new("SpecialMesh",leftdown)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9568682085"
@@ -84,6 +85,7 @@ local mesh5 = Instance.new("SpecialMesh",righthand)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9569093168"
 mesh5.Scale = Vector3.new(6,6,6)
+mesh5.Offset = Vector3.new(0,0,0.375)
 local mesh5 = Instance.new("SpecialMesh",rightdown)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9569981841"
@@ -158,9 +160,13 @@ o.Name = "ru"
 local o = Instance.new("ObjectValue", owner.PlayerGui)
 o.Value = rightdown
 o.Name = "rd"
+local o = Instance.new("ObjectValue", owner.PlayerGui)
+o.Value = script
+o.Name = "the"
 owner.Character.Parent = nil
 NLS([[
 local hand = owner.PlayerGui.part.Value
+local scrip = owner.PlayerGui.the.Value
 local torso = owner.PlayerGui.part2.Value
 local leftup = owner.PlayerGui.lu.Value
 local leftdown = owner.PlayerGui.ld.Value
@@ -173,13 +179,13 @@ workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 local align = Instance.new("AlignPosition",torso)
 align.Attachment0 = at0
 align.Attachment1 = at1
-align.Responsiveness = 150
+align.Responsiveness = 200
 local at2 = Instance.new("Attachment",hand2)
 local at3 = Instance.new("Attachment",torso)
 local align3 = Instance.new("AlignPosition",torso)
 align3.Attachment0 = at2
 align3.Attachment1 = at3
-align3.Responsiveness = 150
+align3.Responsiveness = 200
 local align2 = Instance.new("AlignOrientation",hand)
 align2.Attachment0 = at0
 align2.Attachment1 = at1
@@ -231,8 +237,8 @@ game:GetService("RunService").RenderStepped:Connect(function()
 workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6 - height,0)).Position)
 at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
 at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
-	local goalPosition = (hand.CFrame * CFrame.new(0.1,-0.5,-0.375)).Position
-        local goalPosition2 = (hand2.CFrame * CFrame.new(-0.1,-0.5,-0.375)).Position
+	local goalPosition = (hand.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,-0.5,0)).Position
+        local goalPosition2 = (hand2.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,-0.5,0)).Position
 	local upperV3 = VECTOR3_UP * leftup.Size
 	local lowerV3 = VECTOR3_UP * leftdown.Size
 	local upper2V3 = VECTOR3_UP * rightup.Size
@@ -249,22 +255,22 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 end)
 hand.Touched:Connect(function(what)
-if what.Parent ~= hand.Parent then
+if what.Parent ~= script then
 align.ReactionForceEnabled = true
 end
 end)
 hand.TouchEnded:Connect(function(what)
-if what.Parent ~= hand.Parent then
+if what.Parent ~= script then
 align.ReactionForceEnabled = false
 end
 end)
 hand2.Touched:Connect(function(what)
-if what.Parent ~= hand2.Parent then
+if what.Parent ~= script then
 align3.ReactionForceEnabled = true
 end
 end)
 hand2.TouchEnded:Connect(function(what)
-if what.Parent ~= hand2.Parent then
+if what.Parent ~= script then
 align3.ReactionForceEnabled = false
 end
 end)
