@@ -52,7 +52,7 @@ local mesh5 = Instance.new("SpecialMesh",lefthand)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9570282205"
 mesh5.Scale = Vector3.new(6,6,6)
-mesh5.Offset = Vector3.new(0,0.5,-0.375)
+mesh5.Offset = Vector3.new(0,-0.5,0)
 local mesh5 = Instance.new("SpecialMesh",leftdown)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9568682085"
@@ -85,7 +85,7 @@ local mesh5 = Instance.new("SpecialMesh",righthand)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9569093168"
 mesh5.Scale = Vector3.new(6,6,6)
-mesh5.Offset = Vector3.new(0,0.5,-0.375)
+mesh5.Offset = Vector3.new(0,-0.5,0)
 local mesh5 = Instance.new("SpecialMesh",rightdown)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9569981841"
@@ -239,8 +239,8 @@ local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).
 workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6 - height,0)).Position)
 at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
 at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
-	local goalPosition = (hand.CFrame * CFrame.Angles(math.rad(-90),0,0)).Position
-        local goalPosition2 = (hand2.CFrame * CFrame.Angles(math.rad(-90),0,0)).Position
+	local goalPosition = (hand.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,0.5,0)).Position
+        local goalPosition2 = (hand2.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,0.5,0)).Position
 	local upperV3 = VECTOR3_UP * leftup.Size
 	local lowerV3 = VECTOR3_UP * leftdown.Size
 	local upper2V3 = VECTOR3_UP * rightup.Size
@@ -262,7 +262,9 @@ params.FilterDescendantsInstances = {scrip}
 params.FilterType = Enum.RaycastFilterType.Blacklist
 local is
 for _, what in pairs(workspace:GetPartBoundsInBox(hand.CFrame, hand.Size * 1.25, params)) do
+if what then
 is = true
+end
 end
 if is then
 align.ReactionForceEnabled = true
@@ -276,7 +278,9 @@ params.FilterDescendantsInstances = {scrip}
 params.FilterType = Enum.RaycastFilterType.Blacklist
 local is
 for _, what in pairs(workspace:GetPartBoundsInBox(hand2.CFrame, hand2.Size * 1.25, params)) do
+if what then
 is = true
+end
 end
 if is then
 align3.ReactionForceEnabled = true
