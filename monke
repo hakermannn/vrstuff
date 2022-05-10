@@ -173,13 +173,13 @@ workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 local align = Instance.new("AlignPosition",torso)
 align.Attachment0 = at0
 align.Attachment1 = at1
-align.Responsiveness = 150
+align.Responsiveness = 200
 local at2 = Instance.new("Attachment",hand2)
 local at3 = Instance.new("Attachment",torso)
 local align3 = Instance.new("AlignPosition",torso)
 align3.Attachment0 = at2
 align3.Attachment1 = at3
-align3.Responsiveness = 150
+align3.Responsiveness = 200
 local align2 = Instance.new("AlignOrientation",hand)
 align2.Attachment0 = at0
 align2.Attachment1 = at1
@@ -250,15 +250,19 @@ at3.WorldCFrame = camera.CFrame * cf1
 end)
 hand.Touched:Connect(function()
 align.ReactionForceEnabled = true
+align.RigidityEnabled = false
 end)
 hand.TouchEnded:Connect(function()
 align.ReactionForceEnabled = false
+align.RigidityEnabled = true
 end)
 hand2.Touched:Connect(function()
 align3.ReactionForceEnabled = true
+align3.RigidityEnabled = false
 end)
 hand2.TouchEnded:Connect(function()
 align3.ReactionForceEnabled = false
+align3.RigidityEnabled = true
 end)
 workspace.CurrentCamera.HeadScale = 1.5
 game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
