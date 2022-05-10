@@ -134,6 +134,8 @@ rightup.Anchored = false
 righthand.Anchored = false
 rightup.CanCollide = false
 rightdown.CanCollide = false
+lefthand.CanCollide = false
+righthand.CanCollide = false
 for i,v in pairs(script:GetDescendants()) do
 if v:IsA("Part") then
 v:SetNetworkOwner(owner)
