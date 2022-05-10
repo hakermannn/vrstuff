@@ -288,9 +288,6 @@ game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
 		cf = CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
 	elseif part == Enum.UserCFrame.RightHand then
 		cf1 = CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
-elseif part == Enum.UserCFrame.Head then
-local _,y,_ = move:ToEulerAnglesXYZ()
-bg.CFrame = CFrame.Angles(0,y,0)
 	end
 end)
 ]],owner.PlayerGui)
