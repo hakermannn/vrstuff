@@ -1,0 +1,293 @@
+
+local colorparts = {}
+local belle = Instance.new("Part",script)
+belle.Anchored = true
+belle.CFrame = owner.Character.Head.CFrame * CFrame.new(0,0.615,-1.06)
+belle.Size = Vector3.new(0.231, 0.295,0.037) * 6
+local hed = Instance.new("Part",script)
+hed.Anchored = true
+hed.CFrame = owner.Character.Head.CFrame * CFrame.new(0,2.525,0 - 0.48)
+hed.Size = Vector3.new(0.231, 0.295,0.263) * 6
+local faic = Instance.new("Part",script)
+faic.Anchored = true
+faic.CFrame = owner.Character.Head.CFrame * CFrame.new(0,2.255,-1.2375)
+faic.Size = Vector3.new(0.231, 0.295,0.037) * 6
+local mesh4 = Instance.new("SpecialMesh",belle)
+mesh4.TextureId = "rbxassetid://9543006107"
+mesh4.MeshId = "rbxassetid://9549527429"
+mesh4.Scale = Vector3.new(6,6,6)
+local mesh4 = Instance.new("SpecialMesh",hed)
+mesh4.TextureId = "rbxassetid://9543006107"
+mesh4.MeshId = "rbxassetid://9543003888"
+mesh4.Scale = Vector3.new(6,6,6)
+local mesh4 = Instance.new("SpecialMesh",faic)
+mesh4.TextureId = "rbxassetid://9542934591"
+mesh4.MeshId = "rbxassetid://9542922359"
+mesh4.Scale = Vector3.new(6,6,6)
+local tors = Instance.new("Part",script)
+tors.Anchored = true
+tors.CFrame = owner.Character.Head.CFrame * CFrame.new(0,0.625,-0.125)
+tors.Size = Vector3.new(0.35, 0.35,0.35) * 6
+local mesh4 = Instance.new("SpecialMesh",tors)
+mesh4.TextureId = "rbxassetid://9543006107"
+mesh4.MeshId = "rbxassetid://9543091239"
+mesh4.Scale = Vector3.new(6,6,6)
+local leftdown = Instance.new("Part",script)
+leftdown.Anchored = true
+leftdown.CFrame = owner.Character.Head.CFrame * CFrame.new(-1.25,-2,0.125)
+leftdown.Size = Vector3.new(0.234 * 0.65, 0.461,0.226 * 0.65) * 6
+local leftmid = Instance.new("Part",script)
+leftmid.Anchored = true
+leftmid.CFrame = owner.Character.Head.CFrame * CFrame.new(-1.21875,-0.75,0.185)
+leftmid.Size = Vector3.new(0.125,0.125,0.125)
+local mesh5 = Instance.new("SpecialMesh",leftmid)
+mesh5.TextureId = "rbxassetid://9579969696"
+mesh5.MeshId = "rbxassetid://1050819975"
+mesh5.Scale = Vector3.new(0.02,0.02,0.02)
+local lefthand = Instance.new("Part",script)
+lefthand.Anchored = true
+lefthand.CFrame = owner.Character.Head.CFrame * CFrame.new(-1.15,-3.5,-0.25)
+lefthand.Size = Vector3.new(0.234 * 0.125, 0.231 * 0.75,0.226 * 0.5) * 6
+local mesh5 = Instance.new("SpecialMesh",lefthand)
+mesh5.TextureId = "rbxassetid://9543006107"
+mesh5.MeshId = "rbxassetid://9570282205"
+mesh5.Scale = Vector3.new(6,6,6)
+local mesh5 = Instance.new("SpecialMesh",leftdown)
+mesh5.TextureId = "rbxassetid://9543006107"
+mesh5.MeshId = "rbxassetid://9568682085"
+mesh5.Scale = Vector3.new(6,6,6)
+local leftup = Instance.new("Part",script)
+leftup.Anchored = true
+leftup.CFrame = owner.Character.Head.CFrame * CFrame.new(-1,0.5,0)
+leftup.Size = Vector3.new(0.234 * 0.75, 0.331,0.226 * 0.75) * 6
+local mesh5 = Instance.new("SpecialMesh",leftup)
+mesh5.TextureId = "rbxassetid://9543006107"
+mesh5.MeshId = "rbxassetid://9569666583"
+mesh5.Scale = Vector3.new(6,6,6)
+local rightdown = Instance.new("Part",script)
+rightdown.Anchored = true
+rightdown.CFrame = owner.Character.Head.CFrame * CFrame.new(1.25,-2,0.125)
+rightdown.Size = Vector3.new(0.234 * 0.65, 0.461,0.226 * 0.65) * 6
+local rightmid = Instance.new("Part",script)
+rightmid.Anchored = true
+rightmid.CFrame = owner.Character.Head.CFrame * CFrame.new(1.21875,-0.75,0.185)
+rightmid.Size = Vector3.new(0.125,0.125,0.125)
+local mesh5 = Instance.new("SpecialMesh",rightmid)
+mesh5.TextureId = "rbxassetid://9579969696"
+mesh5.MeshId = "rbxassetid://1050819975"
+mesh5.Scale = Vector3.new(0.02,0.02,0.02)
+local righthand = Instance.new("Part",script)
+righthand.Anchored = true
+righthand.CFrame = owner.Character.Head.CFrame * CFrame.new(1.15,-3.5,-0.25)
+righthand.Size = Vector3.new(0.234 * 0.125, 0.231 * 0.75,0.226 * 0.5) * 6
+local mesh5 = Instance.new("SpecialMesh",righthand)
+mesh5.TextureId = "rbxassetid://9543006107"
+mesh5.MeshId = "rbxassetid://9569093168"
+mesh5.Scale = Vector3.new(6,6,6)
+local mesh5 = Instance.new("SpecialMesh",rightdown)
+mesh5.TextureId = "rbxassetid://9543006107"
+mesh5.MeshId = "rbxassetid://9569981841"
+mesh5.Scale = Vector3.new(6,6,6)
+local rightup = Instance.new("Part",script)
+rightup.Anchored = true
+rightup.CFrame = owner.Character.Head.CFrame * CFrame.new(1,0.5,0)
+rightup.Size = Vector3.new(0.234 * 0.75, 0.331,0.226 * 0.75) * 6
+local mesh5 = Instance.new("SpecialMesh",rightup)
+mesh5.TextureId = "rbxassetid://9543006107"
+mesh5.MeshId = "rbxassetid://9567001392"
+mesh5.Scale = Vector3.new(6,6,6)
+colorparts = {rightup,righthand,rightdown,leftdown,leftup,lefthand,tors,hed}
+local sound = Instance.new("Sound",hed)
+sound.SoundId = "rbxassetid://1425624981"
+sound.Volume = 0
+sound.Looped = true
+sound:Play()
+function solveIK(originCF, targetPos, l1, l2)	
+	-- build intial values for solving
+	local localized = originCF:pointToObjectSpace(targetPos)
+	local localizedUnit = localized.unit
+	local l3 = localized.magnitude
+	
+	-- build a "rolled" planeCF for a more natural arm look
+	local axis = Vector3.new(0, 0, -1):Cross(localizedUnit)
+	local angle = math.acos(-localizedUnit.Z)
+	local planeCF = originCF * CFrame.fromAxisAngle(axis, angle)
+	
+	-- case: point is to close, unreachable
+	-- return: push back planeCF so the "hand" still reaches, angles fully compressed
+	if l3 < math.max(l2, l1) - math.min(l2, l1) then
+		return planeCF * CFrame.new(0, 0,  math.max(l2, l1) - math.min(l2, l1) - l3), -math.pi/2, math.pi
+		
+	-- case: point is to far, unreachable
+	-- return: for forward planeCF so the "hand" still reaches, angles fully extended
+	elseif l3 > l1 + l2 then
+		return planeCF * CFrame.new(0, 0, math.clamp(l1 + l2 - l3,0,0.25)), math.pi/2, 0
+		
+	-- case: point is reachable
+	-- return: planeCF is fine, solve the angles of the triangle
+	else
+		local a1 = -math.acos((-(l2 * l2) + (l1 * l1) + (l3 * l3)) / (2 * l1 * l3))
+		local a2 = math.acos(((l2  * l2) - (l1 * l1) + (l3 * l3)) / (2 * l2 * l3))
+
+		return planeCF, a1 + math.pi/2, a2 - a1
+	end
+end
+local runService	= game:GetService("RunService")
+local SHOULDER_OFFSET		= CFrame.new(-1, 1, 0)
+local VECTOR3_UP			= Vector3.new(0, 1, 0)
+local weld = Instance.new("Weld",tors)
+local cfdif = tors.CFrame:Inverse() * leftup.CFrame
+weld.Part0 = leftup
+weld.Part1 = tors
+weld.C1 = cfdif * CFrame.new(1,0.25,-0.25)
+local weld2 = Instance.new("Weld",leftup)
+local cfdif2 = leftup.CFrame:Inverse() * leftdown.CFrame
+weld2.Part0 = leftdown
+weld2.Part1 = leftup
+weld2.C1 = cfdif2 * CFrame.new(0,leftdown.Size.Y * 0.5,0)
+local weld3 = Instance.new("Weld",tors)
+local cfdif3 = tors.CFrame:Inverse() * rightup.CFrame
+weld3.Part0 = rightup
+weld3.Part1 = tors
+weld3.C1 = cfdif3 * CFrame.new(-1,0.25,-0.25)
+local weld4 = Instance.new("Weld",rightup)
+local cfdif4 = rightup.CFrame:Inverse() * rightdown.CFrame
+weld4.Part0 = rightdown
+weld4.Part1 = rightup
+weld4.C1 = cfdif4 * CFrame.new(0,rightdown.Size.Y * 0.5,0)
+function wel(pard,pard2)
+local weldd = Instance.new("Weld",pard)
+local cfdiff = pard.CFrame:Inverse() * pard2.CFrame
+weldd.Part0 = pard2
+weldd.Part1 = pard
+weldd.C1 = cfdiff
+end
+wel(rightup,rightmid)
+wel(leftup,leftmid)
+local weldd = Instance.new("Weld",rightdown)
+local cfdiff = rightdown.CFrame:Inverse() * righthand.CFrame
+weldd.Part0 = righthand
+weldd.Part1 = rightdown
+weldd.C1 = cfdiff * CFrame.new(0,0.125,0)
+weldd.C0 = CFrame.new(0,0.125,0)
+local weldd2 = Instance.new("Weld",leftdown)
+local cfdiff = leftdown.CFrame:Inverse() * lefthand.CFrame
+weldd2.Part0 = lefthand
+weldd2.Part1 = leftdown
+weldd2.C1 = cfdiff * CFrame.new(0,0.125,0)
+weldd2.C0 = CFrame.new(0,0.125,0)
+wel(hed,faic)
+wel(tors,hed)
+wel(tors,belle)
+belle.Anchored = false
+hed.Anchored = false
+leftmid.Anchored = false
+rightmid.Anchored = false
+rightmid.CanCollide = false
+leftmid.CanCollide = false
+faic.Anchored = false
+tors.Anchored = false
+leftdown.Anchored = false
+leftup.Anchored = false
+lefthand.Anchored = false
+leftdown.CanCollide = false
+leftup.CanCollide = false
+rightdown.Anchored = false
+rightup.Anchored = false
+righthand.Anchored = false
+rightup.CanCollide = false
+rightdown.CanCollide = false
+game:GetService("RunService").Heartbeat:Connect(function()
+	local goalPosition = (lefthand.CFrame * CFrame.new(0.1,-0.5,-0.375)).Position
+        local goalPosition2 = (righthand.CFrame * CFrame.new(-0.1,-0.5,-0.375)).Position
+	local upperV3 = VECTOR3_UP * leftup.Size
+	local lowerV3 = VECTOR3_UP * leftdown.Size
+	local upper2V3 = VECTOR3_UP * rightup.Size
+	local lower2V3 = VECTOR3_UP * rightdown.Size
+	local planeCF, shoulderAngle, elbowAngle = solveIK(tors.CFrame * cfdif * CFrame.new(0,leftup.Size.Y * 0.5,0), goalPosition, upperV3.Y, lowerV3.Y + 0.125)
+	local planeCF2, shoulderAngle2, elbowAngle2 = solveIK(tors.CFrame * cfdif3 * CFrame.new(0,rightup.Size.Y * 0.5,0), goalPosition2, upper2V3.Y, lower2V3.Y + 0.125)
+	local shoulderAngleCFrame = tors.CFrame:toObjectSpace(planeCF) * CFrame.Angles(shoulderAngle, 0, 0)
+	local elbowAngleAngleCFrame = CFrame.Angles(elbowAngle, 0, 0)
+	local shoulderAngleCFrame2 = tors.CFrame:toObjectSpace(planeCF2) * CFrame.Angles(shoulderAngle2, 0, 0)
+	local elbowAngleAngleCFrame2 = CFrame.Angles(elbowAngle2, 0, 0)
+	weld.C0 = weld.C0:Lerp((CFrame.new(0,-0.25,0) * shoulderAngleCFrame * CFrame.new(upperV3 * -0.5)):Inverse(),0.25)
+	weld2.C0 = weld2.C0:Lerp((elbowAngleAngleCFrame * CFrame.new(lowerV3 * -0.5)):Inverse(),0.25)
+	weld3.C0 = weld3.C0:Lerp((CFrame.new(0,-0.25,0) * shoulderAngleCFrame2 * CFrame.new(upper2V3 * -0.5)):Inverse(),0.25)
+	weld4.C0 = weld4.C0:Lerp((elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)):Inverse(),0.25)
+end)
+local o = Instance.new("ObjectValue", owner.PlayerGui)
+o.Value = lefthand
+o.Name = "part"
+local o = Instance.new("ObjectValue", owner.PlayerGui)
+o.Value = tors
+o.Name = "part2"
+local o = Instance.new("ObjectValue", owner.PlayerGui)
+o.Value = righthand
+o.Name = "part3"
+NLS([[
+local hand = owner.PlayerGui.part.Value
+local torso = owner.PlayerGui.part2.Value
+local hand2 = owner.PlayerGui.part3.Value
+local at0 = Instance.new("Attachment",hand)
+local at1 = Instance.new("Attachment",torso)
+workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+local align = Instance.new("AlignPosition",torso)
+align.Attachment0 = at0
+align.Attachment1 = at1
+align.MaxForce = align.MaxForce * 10
+align.MaxVelocity = align.MaxVelocity * 10
+align.Responsiveness = 150
+local at2 = Instance.new("Attachment",hand2)
+local at3 = Instance.new("Attachment",torso)
+local align3 = Instance.new("AlignPosition",torso)
+align3.Attachment0 = at2
+align3.Attachment1 = at3
+align3.MaxForce = align3.MaxForce * 10
+align3.MaxVelocity = align3.MaxVelocity * 10
+align3.Responsiveness = 150
+local align2 = Instance.new("AlignOrientation",hand)
+align2.Attachment0 = at0
+align2.Attachment1 = at1
+align2.RigidityEnabled = true
+local align4 = Instance.new("AlignOrientation",hand2)
+align4.Attachment0 = at2
+align4.Attachment1 = at3
+align4.RigidityEnabled = true
+local at4 = Instance.new("Attachment",torso)
+local at5 = Instance.new("Attachment",workspace.Terrain)
+local align3 = Instance.new("AlignOrientation",torso)
+align3.Attachment0 = at4
+align3.Attachment1 = at5
+align3.RigidityEnabled = true
+local count = 0
+cf = CFrame.new()
+cf1 = CFrame.new()
+game:GetService("RunService").RenderStepped:Connect(function()
+at1.WorldCFrame = cf
+at3.WorldCFrame = cf1
+workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2,0)).Position)
+end)
+hand.Touched:Connect(function()
+align.ReactionForceEnabled = true
+end)
+hand.TouchEnded:Connect(function()
+align.ReactionForceEnabled = false
+end)
+hand2.Touched:Connect(function()
+align3.ReactionForceEnabled = true
+end)
+hand2.TouchEnded:Connect(function()
+align3.ReactionForceEnabled = false
+end)
+workspace.CurrentCamera.HeadScale = 1.5
+game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
+	if part == Enum.UserCFrame.LeftHand then
+		cf = camera.CFrame * CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
+	elseif part == Enum.UserCFrame.RightHand then
+		cf1 = camera.CFrame * CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
+elseif part == Enum.UserCFrame.Head then
+local _,y,_ = move:ToEulerAnglesXYZ()
+at5.CFrame = CFrame.Angles(0,y,0)
+	end
+end)
+]],owner.PlayerGui)
