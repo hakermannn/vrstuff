@@ -249,9 +249,9 @@ at3.WorldCFrame = camera.CFrame * cf1
 	local shoulderAngleCFrame2 = CFrame.Angles(shoulderAngle2, 0, 0)
 	local elbowAngleAngleCFrame2 = CFrame.Angles(elbowAngle2, 0, 0)
 	leftup.CFrame = planeCF * CFrame.new(0,-0.25,0) * shoulderAngleCFrame * CFrame.new(upperV3 * -0.5)
-	leftdown.CFrame = leftup.CFrame * CFrame.new(-0.25,1.5,0.125) * CFrame.new(upperV3 * -0.5) * elbowAngleAngleCFrame * CFrame.new(lowerV3 * -0.5)
+	leftdown.CFrame = leftup.CFrame * CFrame.new(0.25,-1.5,-0.125) * CFrame.new(upperV3 * -0.5) * elbowAngleAngleCFrame * CFrame.new(lowerV3 * -0.5)
 	rightup.CFrame = planeCF2 * CFrame.new(0,-0.25,0) * shoulderAngleCFrame2 * CFrame.new(upper2V3 * -0.5)
-	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,1.5,0.125) * CFrame.new(upper2V3 * -0.5) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
+	rightdown.CFrame = rightup.CFrame * CFrame.new(-0.25,-1.5,-0.125) * CFrame.new(upper2V3 * -0.5) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 end)
 hand.Touched:Connect(function()
 align.ReactionForceEnabled = true
