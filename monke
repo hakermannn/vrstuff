@@ -255,22 +255,22 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 end)
 hand.Touched:Connect(function(what)
-if what.Parent ~= script then
+if what.Parent ~= scrip then
 align.ReactionForceEnabled = true
 end
 end)
 hand.TouchEnded:Connect(function(what)
-if what.Parent ~= script then
+if what.Parent ~= scrip then
 align.ReactionForceEnabled = false
 end
 end)
 hand2.Touched:Connect(function(what)
-if what.Parent ~= script then
+if what.Parent ~= scrip then
 align3.ReactionForceEnabled = true
 end
 end)
 hand2.TouchEnded:Connect(function(what)
-if what.Parent ~= script then
+if what.Parent ~= scrip then
 align3.ReactionForceEnabled = false
 end
 end)
