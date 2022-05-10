@@ -47,12 +47,12 @@ mesh5.Scale = Vector3.new(0.02,0.02,0.02)
 local lefthand = Instance.new("Part",script)
 lefthand.Anchored = true
 lefthand.CFrame = owner.Character.Head.CFrame * CFrame.new(-1.15,-3.5,-0.25)
-lefthand.Size = Vector3.new(0.234 * 0.125, 0.231 * 0.75,0.226 * 0.5) * 6
+lefthand.Size = Vector3.new(0.234 * 0.125, 0.231 * 0.375,0.226 * 0.5) * 6
 local mesh5 = Instance.new("SpecialMesh",lefthand)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9570282205"
 mesh5.Scale = Vector3.new(6,6,6)
-mesh5.Offset = Vector3.new(0,0,0.375)
+mesh5.Offset = Vector3.new(0,0.25,0.375)
 local mesh5 = Instance.new("SpecialMesh",leftdown)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9568682085"
@@ -80,12 +80,12 @@ mesh5.Scale = Vector3.new(0.02,0.02,0.02)
 local righthand = Instance.new("Part",script)
 righthand.Anchored = true
 righthand.CFrame = owner.Character.Head.CFrame * CFrame.new(1.15,-3.5,-0.25)
-righthand.Size = Vector3.new(0.234 * 0.125, 0.231 * 0.75,0.226 * 0.5) * 6
+righthand.Size = Vector3.new(0.234 * 0.125, 0.231 * 0.375,0.226 * 0.5) * 6
 local mesh5 = Instance.new("SpecialMesh",righthand)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9569093168"
 mesh5.Scale = Vector3.new(6,6,6)
-mesh5.Offset = Vector3.new(0,0,0.375)
+mesh5.Offset = Vector3.new(0,0.25,0.375)
 local mesh5 = Instance.new("SpecialMesh",rightdown)
 mesh5.TextureId = "rbxassetid://9543006107"
 mesh5.MeshId = "rbxassetid://9569981841"
@@ -232,13 +232,13 @@ function solveIK(originCF, targetPos, l1, l2)
 	end
 end
 local VECTOR3_UP			= Vector3.new(0, 1, 0)
-local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
 game:GetService("RunService").RenderStepped:Connect(function()
+local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
 workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6 - height,0)).Position)
 at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
 at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
-	local goalPosition = (hand.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,-0.5,0)).Position
-        local goalPosition2 = (hand2.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,-0.5,0)).Position
+	local goalPosition = (hand.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,-0.25,0)).Position
+        local goalPosition2 = (hand2.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,-0.25,0)).Position
 	local upperV3 = VECTOR3_UP * leftup.Size
 	local lowerV3 = VECTOR3_UP * leftdown.Size
 	local upper2V3 = VECTOR3_UP * rightup.Size
@@ -255,19 +255,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 end)
 hand.Touched:Connect(function(what)
-if what.Parent ~= scrip and hand.Velocity.Magnitude <= 15 then
+if what.Parent ~= scrip then
 align.ReactionForceEnabled = true
-elseif what.Parent ~= scrip and hand.Velocity.Magnitude >= 15 then
-	local axis = at0.WorldPosition - at1.WorldPosition
-	if axis.Magnitude > 0 then
-		axis = axis
-	end
-	local effectiveVelocity = hand.Velocity - torso.Velocity
-	local forceExternal = Vector3.new(0, -workspace.Gravity, 0)
-	local force = (-100 * (hand.Position - at1.WorldPosition).Magnitude) * axis:Dot(effectiveVelocity) + axis:Dot(forceExternal)
- 
-	force = math.clamp(force, -1000, 1000)
-	torso.Velocity = CFrame.new(at0.WorldPosition,at1.WorldPosition).lookVector * force
 end
 end)
 hand.TouchEnded:Connect(function(what)
@@ -276,19 +265,8 @@ align.ReactionForceEnabled = false
 end
 end)
 hand2.Touched:Connect(function(what)
-if what.Parent ~= scrip and hand2.Velocity.Magnitude <= 15 then
+if what.Parent ~= scrip then
 align3.ReactionForceEnabled = true
-elseif what.Parent ~= scrip and hand2.Velocity.Magnitude >= 15 then
-	local axis = at2.WorldPosition - at3.WorldPosition
-	if axis.Magnitude > 0 then
-		axis = axis.Unit
-	end
-	local effectiveVelocity = hand2.Velocity - torso.Velocity
-	local forceExternal = Vector3.new(0, -workspace.Gravity, 0)
-	local force = (-100 * (hand2.Position - at3.WorldPosition).Magnitude) * axis:Dot(effectiveVelocity) + axis:Dot(forceExternal)
- 
-	force = math.clamp(force, -1000, 1000)
-	torso.Velocity = CFrame.new(at0.WorldPosition,at1.WorldPosition).lookVector * force
 end
 end)
 hand2.TouchEnded:Connect(function(what)
