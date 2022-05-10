@@ -168,7 +168,7 @@ local rightdown = owner.PlayerGui.rd.Value
 local hand2 = owner.PlayerGui.part3.Value
 local at0 = Instance.new("Attachment",hand)
 local at1 = Instance.new("Attachment",torso)
-workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
+-- workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 local align = Instance.new("AlignPosition",torso)
 align.Attachment0 = at0
 align.Attachment1 = at1
@@ -235,7 +235,7 @@ local VECTOR3_UP			= Vector3.new(0, 1, 0)
 game:GetService("RunService").RenderStepped:Connect(function()
 at1.WorldCFrame = camera.CFrame * cf
 at3.WorldCFrame = camera.CFrame * cf1
-workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2,0)).Position)
+-- workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2,0)).Position)
 	local goalPosition = (hand.CFrame * CFrame.new(0.1,-0.5,-0.375)).Position
         local goalPosition2 = (hand2.CFrame * CFrame.new(-0.1,-0.5,-0.375)).Position
 	local upperV3 = VECTOR3_UP * leftup.Size
