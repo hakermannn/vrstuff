@@ -255,19 +255,19 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 end)
 hand.Touched:Connect(function(what)
-if what.Parent ~= scrip and hand.Velocity.Magnitude <= 5 then
+if what.Parent ~= scrip and hand.Velocity.Magnitude <= 15 then
 align.ReactionForceEnabled = true
-elseif what.Parent ~= scrip and hand.Velocity.Magnitude >= 5 then
+elseif what.Parent ~= scrip and hand.Velocity.Magnitude >= 15 then
 	local axis = at0.WorldPosition - at1.WorldPosition
 	if axis.Magnitude > 0 then
 		axis = axis
 	end
 	local effectiveVelocity = hand.Velocity - torso.Velocity
 	local forceExternal = Vector3.new(0, -workspace.Gravity, 0)
-	local force = (-5000 * (hand.Position - at1.WorldPosition).Magnitude) * axis:Dot(effectiveVelocity) + axis:Dot(forceExternal)
+	local force = (-100 * (hand.Position - at1.WorldPosition).Magnitude) * axis:Dot(effectiveVelocity) + axis:Dot(forceExternal)
  
-	force = math.clamp(force, -50000, 50000)
-	torso.Velocity = CFrame.new(at0.WorldPosition,at1.WorldPosition).lookVector * (force * 0.125)
+	force = math.clamp(force, -1000, 1000)
+	torso.Velocity = CFrame.new(at0.WorldPosition,at1.WorldPosition).lookVector * force
 end
 end)
 hand.TouchEnded:Connect(function(what)
@@ -276,19 +276,19 @@ align.ReactionForceEnabled = false
 end
 end)
 hand2.Touched:Connect(function(what)
-if what.Parent ~= scrip and hand2.Velocity.Magnitude <= 5 then
+if what.Parent ~= scrip and hand2.Velocity.Magnitude <= 15 then
 align3.ReactionForceEnabled = true
-elseif what.Parent ~= scrip and hand2.Velocity.Magnitude >= 5 then
+elseif what.Parent ~= scrip and hand2.Velocity.Magnitude >= 15 then
 	local axis = at2.WorldPosition - at3.WorldPosition
 	if axis.Magnitude > 0 then
 		axis = axis.Unit
 	end
 	local effectiveVelocity = hand2.Velocity - torso.Velocity
 	local forceExternal = Vector3.new(0, -workspace.Gravity, 0)
-	local force = (-5000 * (hand2.Position - at3.WorldPosition).Magnitude) * axis:Dot(effectiveVelocity) + axis:Dot(forceExternal)
+	local force = (-100 * (hand2.Position - at3.WorldPosition).Magnitude) * axis:Dot(effectiveVelocity) + axis:Dot(forceExternal)
  
-	force = math.clamp(force, -50000, 50000)
-	torso.Velocity = CFrame.new(at0.WorldPosition,at1.WorldPosition).lookVector * (force * 0.125)
+	force = math.clamp(force, -1000, 1000)
+	torso.Velocity = CFrame.new(at0.WorldPosition,at1.WorldPosition).lookVector * force
 end
 end)
 hand2.TouchEnded:Connect(function(what)
