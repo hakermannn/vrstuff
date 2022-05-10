@@ -236,11 +236,14 @@ game:GetService("RunService").RenderStepped:Connect(function()
 local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
 for i,v in pairs(scrip:GetDescendants()) do
 if v:IsA("Part") then
-v.CanCollide = false
+local co = Instance.new("NoCollisionConstraint",v)
+co.Part0 = hand
+co.Part1 = v
+local co = Instance.new("NoCollisionConstraint",v)
+co.Part0 = hand2
+co.Part1 = v
 end
 end
-hand.CanCollide = true
-hand2.CanCollide = true
 workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6 - height,0)).Position)
 at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
 at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
