@@ -173,13 +173,13 @@ workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 local align = Instance.new("AlignPosition",torso)
 align.Attachment0 = at0
 align.Attachment1 = at1
-align.Responsiveness = 200
+align.Responsiveness = 150
 local at2 = Instance.new("Attachment",hand2)
 local at3 = Instance.new("Attachment",torso)
 local align3 = Instance.new("AlignPosition",torso)
 align3.Attachment0 = at2
 align3.Attachment1 = at3
-align3.Responsiveness = 200
+align3.Responsiveness = 150
 local align2 = Instance.new("AlignOrientation",hand)
 align2.Attachment0 = at0
 align2.Attachment1 = at1
@@ -229,10 +229,10 @@ local VECTOR3_UP			= Vector3.new(0, 1, 0)
 local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
 game:GetService("RunService").RenderStepped:Connect(function()
 workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6 - height,0)).Position)
-at1.WorldCFrame = camera.CFrame * cf
-at3.WorldCFrame = camera.CFrame * cf1
-	local goalPosition = (hand2.CFrame * CFrame.new(0.1,-0.5,-0.375)).Position
-        local goalPosition2 = (hand.CFrame * CFrame.new(-0.1,-0.5,-0.375)).Position
+at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
+at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
+	local goalPosition = (hand.CFrame * CFrame.new(0.1,-0.5,-0.375)).Position
+        local goalPosition2 = (hand2.CFrame * CFrame.new(-0.1,-0.5,-0.375)).Position
 	local upperV3 = VECTOR3_UP * leftup.Size
 	local lowerV3 = VECTOR3_UP * leftdown.Size
 	local upper2V3 = VECTOR3_UP * rightup.Size
@@ -248,19 +248,25 @@ at3.WorldCFrame = camera.CFrame * cf1
 	rightup.CFrame = planeCF2 * CFrame.new(0,-0.25,0) * shoulderAngleCFrame2 * CFrame.new(upper2V3 * -0.5) * CFrame.new(0,0,0.25)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 end)
-align3.RigidityEnabled = true
-align.RigidityEnabled = true
-hand.Touched:Connect(function()
+hand.Touched:Connect(function(what)
+if what.Parent ~= hand.Parent then
 align.ReactionForceEnabled = true
+end
 end)
-hand.TouchEnded:Connect(function()
+hand.TouchEnded:Connect(function(what)
+if what.Parent ~= hand.Parent then
 align.ReactionForceEnabled = false
+end
 end)
-hand2.Touched:Connect(function()
+hand2.Touched:Connect(function(what)
+if what.Parent ~= hand2.Parent then
 align3.ReactionForceEnabled = true
+end
 end)
-hand2.TouchEnded:Connect(function()
+hand2.TouchEnded:Connect(function(what)
+if what.Parent ~= hand2.Parent then
 align3.ReactionForceEnabled = false
+end
 end)
 workspace.CurrentCamera.HeadScale = 1.5
 game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
