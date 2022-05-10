@@ -195,10 +195,8 @@ align4.Attachment0 = at2
 align4.Attachment1 = at3
 align4.RigidityEnabled = true
 local at4 = Instance.new("Attachment",torso)
-local align5 = Instance.new("AlignOrientation",torso)
-align5.Attachment0 = at4
-align5.Mode = "OneAttachment"
-align5.RigidityEnabled = true
+local bg = Instance.new("BodyGyro",torso)
+bg.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
 local count = 0
 camera = workspace.CurrentCamera
 cf = hand.CFrame:Inverse() * camera.CFrame
@@ -292,7 +290,7 @@ game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
 		cf1 = CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
 elseif part == Enum.UserCFrame.Head then
 local _,y,_ = move:ToEulerAnglesXYZ()
-align5.CFrame = workspace.CurrentCamera.CFrame * CFrame.Angles(0,y,0)
+bg.CFrame = CFrame.Angles(0,y,0)
 	end
 end)
 ]],owner.PlayerGui)
