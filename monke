@@ -230,8 +230,6 @@ function solveIK(originCF, targetPos, l1, l2)
 	end
 end
 local VECTOR3_UP			= Vector3.new(0, 1, 0)
-game:GetService("RunService").RenderStepped:Connect(function()
-local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
 for i,v in pairs(scrip:GetDescendants()) do
 if v:IsA("Part") then
 local co = Instance.new("NoCollisionConstraint",v)
@@ -242,11 +240,13 @@ co.Part0 = hand2
 co.Part1 = v
 end
 end
+game:GetService("RunService").RenderStepped:Connect(function()
+local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
 workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6 - height,0)).Position)
 at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
 at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
-	local goalPosition = (hand.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,0.5,0)).Position
-        local goalPosition2 = (hand2.CFrame * CFrame.Angles(math.rad(-90),0,0) * CFrame.new(0,0.5,0)).Position
+	local goalPosition = (hand.CFrame * CFrame.new(0,0.5,0) * CFrame.Angles(math.rad(-90),0,0)).Position
+        local goalPosition2 = (hand2.CFrame * CFrame.new(0,0.5,0) * CFrame.Angles(math.rad(-90),0,0)).Position
 	local upperV3 = VECTOR3_UP * leftup.Size
 	local lowerV3 = VECTOR3_UP * leftdown.Size
 	local upper2V3 = VECTOR3_UP * rightup.Size
