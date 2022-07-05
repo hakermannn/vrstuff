@@ -179,14 +179,14 @@ workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 local align = Instance.new("AlignPosition",torso)
 align.Attachment0 = at0
 align.Attachment1 = at1
-align.Responsiveness = 200
+align.RigidityEnabled = true
 align.ApplyAtCenterOfMass = true
 local at2 = Instance.new("Attachment",hand2)
 local at3 = Instance.new("Attachment",torso)
 local align3 = Instance.new("AlignPosition",torso)
 align3.Attachment0 = at2
 align3.Attachment1 = at3
-align3.Responsiveness = 200
+align3.RigidityEnabled = true
 align3.ApplyAtCenterOfMass = true
 local align2 = Instance.new("AlignOrientation",hand)
 align2.Attachment0 = at0
@@ -240,7 +240,6 @@ co.Part1 = v
 end
 end
 game:GetService("RunService").RenderStepped:Connect(function()
-workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6,0)).Position)
 at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
 at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local goalPosition = (hand.CFrame * CFrame.new(0,0.125,0) * CFrame.Angles(math.rad(-90),0,0)).Position
@@ -249,8 +248,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local lowerV3 = VECTOR3_UP * leftdown.Size
 	local upper2V3 = VECTOR3_UP * rightup.Size
 	local lower2V3 = VECTOR3_UP * rightdown.Size
-	local planeCF, shoulderAngle, elbowAngle = solveIK(torso.CFrame * CFrame.new(-1,0.125,0.125) * CFrame.new(0,leftup.Size.Y * 0.5,0), goalPosition, upperV3.Y, lowerV3.Y + 0.125)
-	local planeCF2, shoulderAngle2, elbowAngle2 = solveIK(torso.CFrame * CFrame.new(1,0.125,0.125) * CFrame.new(0,rightup.Size.Y * 0.5,0), goalPosition2, upper2V3.Y, lower2V3.Y + 0.125)
+	local planeCF, shoulderAngle, elbowAngle = solveIK(torso.CFrame * CFrame.new(-1,0.125,0.125) * CFrame.new(0,leftup.Size.Y * 0.5,0), goalPosition, upperV3.Y, lowerV3.Y + -0.125)
+	local planeCF2, shoulderAngle2, elbowAngle2 = solveIK(torso.CFrame * CFrame.new(1,0.125,0.125) * CFrame.new(0,rightup.Size.Y * 0.5,0), goalPosition2, upper2V3.Y, lower2V3.Y + -0.125)
 	local shoulderAngleCFrame = CFrame.Angles(shoulderAngle, 0, 0)
 	local elbowAngleAngleCFrame = CFrame.Angles(elbowAngle, 0, 0)
 	local shoulderAngleCFrame2 = CFrame.Angles(shoulderAngle2, 0, 0)
@@ -261,7 +260,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
 	local _,y,_ = workspace.CurrentCamera.CFrame:ToEulerAnglesXYZ()
 	local _,y2,_ = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head):ToEulerAnglesXYZ()
-	torso.CFrame = CFrame.new(torso.Position) * CFrame.Angles(0,y + y2,0)
+	torso.CFrame = CFrame.new(game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position + Vector3.new(0,-2.6,0)) * CFrame.Angles(0,y + y2,0)
+	workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6,0)).Position)
 end)
 hand.Touched:Connect(function(what)
 if what.Parent ~= scrip then
@@ -285,6 +285,7 @@ end
 end)
 workspace.CurrentCamera.HeadScale = 1.5
 game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
+local headcf = userInput:GetUserCFrame(Enum.UserCFrame.Head)
 	if part == Enum.UserCFrame.LeftHand then
 		cf = CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
 	elseif part == Enum.UserCFrame.RightHand then
