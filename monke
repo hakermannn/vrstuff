@@ -196,9 +196,6 @@ local align4 = Instance.new("AlignOrientation",hand2)
 align4.Attachment0 = at2
 align4.Attachment1 = at3
 align4.RigidityEnabled = true
-local at4 = Instance.new("Attachment",torso)
-local bg = Instance.new("BodyGyro",torso)
-bg.MaxTorque =  Vector3.new(math.huge,math.huge,math.huge)
 local count = 0
 camera = workspace.CurrentCamera
 cf = hand.CFrame:Inverse() * camera.CFrame
@@ -263,6 +260,7 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	leftdown.CFrame = leftup.CFrame * CFrame.new(-0.25,-1,0.125) * elbowAngleAngleCFrame * CFrame.new(lowerV3 * -0.5)
 	rightup.CFrame = planeCF2 * CFrame.new(0,-0.25,0) * shoulderAngleCFrame2 * CFrame.new(upper2V3 * -0.5) * CFrame.new(0,0,0.25)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
+	torso.CFrame = CFrame.new(torso.Position) * CFrame.Angles(0,game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Rotation.Y * workspace.CurrentCamera.Rotation.Y,0)
 end)
 hand.Touched:Connect(function(what)
 if what.Parent ~= scrip then
