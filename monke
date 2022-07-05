@@ -240,8 +240,7 @@ co.Part1 = v
 end
 end
 game:GetService("RunService").RenderStepped:Connect(function()
-local height = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
-workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6 - height,0)).Position)
+workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6,0)).Position)
 at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
 at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local goalPosition = (hand.CFrame * CFrame.new(0,0.5,0) * CFrame.Angles(math.rad(-90),0,0)).Position
@@ -260,7 +259,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	leftdown.CFrame = leftup.CFrame * CFrame.new(-0.25,-1,0.125) * elbowAngleAngleCFrame * CFrame.new(lowerV3 * -0.5)
 	rightup.CFrame = planeCF2 * CFrame.new(0,-0.25,0) * shoulderAngleCFrame2 * CFrame.new(upper2V3 * -0.5) * CFrame.new(0,0,0.25)
 	rightdown.CFrame = rightup.CFrame * CFrame.new(0.25,-1,0.125) * elbowAngleAngleCFrame2 * CFrame.new(lower2V3 * -0.5)
-	torso.CFrame = CFrame.new(torso.Position) * CFrame.Angles(0,game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Rotation.Y * workspace.CurrentCamera.Rotation.Y,0)
+	local _,y,_ = workspace.CurrentCamera:ToEulerAnglesXYZ() + game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head):ToEulerAnglesXYZ()
+	torso.CFrame = CFrame.new(torso.Position) * CFrame.Angles(0,y,0)
 end)
 hand.Touched:Connect(function(what)
 if what.Parent ~= scrip then
