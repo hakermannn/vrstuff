@@ -137,8 +137,11 @@ rightdown.CanCollide = false
 for i,v in pairs(script:GetDescendants()) do
 if v:IsA("Part") then
 v:SetNetworkOwner(owner)
+v.CanTouch = false
 end
 end
+lefthand.CanTouch = true
+righthand.CanTouch = true
 local o = Instance.new("ObjectValue", owner.PlayerGui)
 o.Value = lefthand
 o.Name = "part"
@@ -163,6 +166,17 @@ o.Name = "rd"
 local o = Instance.new("ObjectValue", owner.PlayerGui)
 o.Value = script
 o.Name = "the"
+function float(wha)
+local bv = Instance.new("BodyVelocity",wha)
+bv.MaxForce = Vector3.new(math.huge,math.huge,math.huge)
+bv.Velocity = Vector3.new()
+end
+float(leftup)
+float(leftdown)
+float(rightup)
+float(rightdown)
+float(rightmid)
+float(leftmid)
 owner.Character.Parent = nil
 NLS([[
 local hand = owner.PlayerGui.part.Value
@@ -269,9 +283,7 @@ align.ReactionForceEnabled = true
 end
 end)
 hand.TouchEnded:Connect(function(what)
-if what.Parent ~= scrip then
 align.ReactionForceEnabled = false
-end
 end)
 hand2.Touched:Connect(function(what)
 if what.Parent ~= scrip then
@@ -279,9 +291,7 @@ align3.ReactionForceEnabled = true
 end
 end)
 hand2.TouchEnded:Connect(function(what)
-if what.Parent ~= scrip then
 align3.ReactionForceEnabled = false
-end
 end)
 workspace.CurrentCamera.HeadScale = 1.5
 game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
