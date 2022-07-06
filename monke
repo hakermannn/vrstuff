@@ -306,9 +306,9 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			local GrabRayL = workspace:Raycast(hand.Position, hand.CFrame.rightVector * 5)
 			if GrabRayL then
 				if (GrabRayL.Position - hand.Position).Magnitude <= 2.5 and not GrabbingL then
-				        GrabbingL = Instance.new("WeldConstraint",GrabRayL.Instance)
-					GrabbingL.Part0 = hand
-					GrabbingL.Part1 = GrabRayL.Instance
+				        GrabbingL = Instance.new("WeldConstraint",hand)
+					GrabbingL.Part0 = GrabRayL.Instance
+					GrabbingL.Part1 = hand
 					align.ReactionForceEnabled = true
 				end
 			end
@@ -323,9 +323,9 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			local GrabRayR = workspace:Raycast(hand2.Position, hand2.CFrame.rightVector * -5)
 			if GrabRayR then
 				if (GrabRayR.Position - hand2.Position).Magnitude <= 2.5 and not GrabbingR then
-					GrabbingR = Instance.new("WeldConstraint",GrabRayR.Instance)
-					GrabbingR.Part0 = hand2
-					GrabbingR.Part1 = GrabRayR.Instance
+					GrabbingR = Instance.new("WeldConstraint",hand2)
+					GrabbingR.Part0 = GrabRayL.Instance
+					GrabbingR.Part1 = hand2
 					align3.ReactionForceEnabled = true
 				end
 			end
