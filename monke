@@ -279,26 +279,6 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 end)
 local GrabbingL = nil
 local GrabbingR = nil
-hand.Touched:Connect(function(what)
-if what.Parent ~= scrip and GrabbingL == nil then
-align.ReactionForceEnabled = true
-end
-end)
-hand.TouchEnded:Connect(function(what)
-if GrabbingL == nil then
-align.ReactionForceEnabled = false
-end
-end)
-hand2.Touched:Connect(function(what)
-if what.Parent ~= scrip and GrabbingR == nil then
-align3.ReactionForceEnabled = true
-end
-end)
-hand2.TouchEnded:Connect(function(what)
-if GrabbingR == nil then
-align3.ReactionForceEnabled = false
-end
-end)
 local inputService = game:GetService("UserInputService")
 local Gamepad = Enum.UserInputType.Gamepad1
 game:GetService("RunService").RenderStepped:Connect(function()
