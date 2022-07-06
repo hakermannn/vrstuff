@@ -277,26 +277,30 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	torso.CFrame = CFrame.new(torso.Position) + CFrame.Angles(0,y + y2,0)
 	workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,2.6,0)).Position)
 end)
+local GrabbingL = nil
+local GrabbingR = nil
 hand.Touched:Connect(function(what)
-if what.Parent ~= scrip then
+if what.Parent ~= scrip and GrabbingL == nil then
 align.ReactionForceEnabled = true
 end
 end)
 hand.TouchEnded:Connect(function(what)
+if GrabbingL == nil then
 align.ReactionForceEnabled = false
+end
 end)
 hand2.Touched:Connect(function(what)
-if what.Parent ~= scrip then
+if what.Parent ~= scrip and GrabbingR == nil then
 align3.ReactionForceEnabled = true
 end
 end)
 hand2.TouchEnded:Connect(function(what)
+if GrabbingR == nil then
 align3.ReactionForceEnabled = false
+end
 end)
 local inputService = game:GetService("UserInputService")
 local Gamepad = Enum.UserInputType.Gamepad1
-local GrabbingL = nil
-local GrabbingR = nil
 game:GetService("RunService").RenderStepped:Connect(function()
 		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonL1) then
 			local GrabRayL = workspace:Raycast(hand.Position, hand.CFrame.rightVector * 5)
@@ -305,12 +309,14 @@ game:GetService("RunService").RenderStepped:Connect(function()
 				        GrabbingL = Instance.new("WeldConstraint",GrabRayL.Instance)
 					GrabbingL.Part0 = hand
 					GrabbingL.Part1 = GrabRayL.Instance
+					align.ReactionForceEnabled = true
 				end
 			end
 		else
 		if GrabbingL ~= nil then
 		GrabbingL:Destroy()
 			GrabbingL = nil
+			align.ReactionForceEnabled = false
 			end
 		end
 		end
@@ -321,12 +327,14 @@ game:GetService("RunService").RenderStepped:Connect(function()
 					GrabbingR = Instance.new("WeldConstraint",GrabRayR.Instance)
 					GrabbingR.Part0 = hand2
 					GrabbingR.Part1 = GrabRayR.Instance
+					align3.ReactionForceEnabled = true
 				end
 			end
 		else
 		if GrabbingR ~= nil then
 		GrabbingR:Destroy()
 			GrabbingR = nil
+			align3.ReactionForceEnabled = false
 			end
 		end
 		end
