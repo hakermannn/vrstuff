@@ -304,7 +304,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			if GrabRayR then
 				if (GrabRayR.Position - hand2.Position).Magnitude <= 2.5 and not GrabbingR then
 					GrabbingR = Instance.new("WeldConstraint",hand2)
-					GrabbingR.Part0 = GrabRayL.Instance
+					GrabbingR.Part0 = GrabRayR.Instance
 					GrabbingR.Part1 = hand2
 					align3.ReactionForceEnabled = true
 				end
