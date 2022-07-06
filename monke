@@ -262,8 +262,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local lowerV3 = VECTOR3_UP * leftdown.Size
 	local upper2V3 = VECTOR3_UP * rightup.Size
 	local lower2V3 = VECTOR3_UP * rightdown.Size
-	local planeCF, shoulderAngle, elbowAngle = solveIK(torso.CFrame * CFrame.new(-1,0.125,0.125) * CFrame.new(0,leftup.Size.Y * 0.5,0), goalPosition, upperV3.Y, lowerV3.Y + -0.125)
-	local planeCF2, shoulderAngle2, elbowAngle2 = solveIK(torso.CFrame * CFrame.new(1,0.125,0.125) * CFrame.new(0,rightup.Size.Y * 0.5,0), goalPosition2, upper2V3.Y, lower2V3.Y + -0.125)
+	local planeCF, shoulderAngle, elbowAngle = solveIK(torso.CFrame * CFrame.new(-1,0.125,0.125) * CFrame.new(0,leftup.Size.Y * 0.5,0), goalPosition, upperV3.Y, lowerV3.Y + -0.25)
+	local planeCF2, shoulderAngle2, elbowAngle2 = solveIK(torso.CFrame * CFrame.new(1,0.125,0.125) * CFrame.new(0,rightup.Size.Y * 0.5,0), goalPosition2, upper2V3.Y, lower2V3.Y + -0.25)
 	local shoulderAngleCFrame = CFrame.Angles(shoulderAngle, 0, 0)
 	local elbowAngleAngleCFrame = CFrame.Angles(elbowAngle, 0, 0)
 	local shoulderAngleCFrame2 = CFrame.Angles(shoulderAngle2, 0, 0)
@@ -279,6 +279,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 end)
 local GrabbingL = nil
 local GrabbingR = nil
+local fakeanchorl = nil
+local fakeanchorr = nil
 local inputService = game:GetService("UserInputService")
 local Gamepad = Enum.UserInputType.Gamepad1
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -287,7 +289,12 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			if GrabRayL then
 				if (GrabRayL.Position - hand.Position).Magnitude <= 2.5 and not GrabbingL then
 				        GrabbingL = Instance.new("WeldConstraint",hand)
-					GrabbingL.Part0 = GrabRayL.Instance
+					fakeanchorl = Instance.new("Part",workspace)
+					fakeanchorl.Position = GrabRayL.Position
+					fakeanchorl.Transparency = 1
+					fakeanchorl.Anchored = true
+					fakeanchorl.CanCollide = false
+					GrabbingL.Part0 = faleanchor
 					GrabbingL.Part1 = hand
 					align.ReactionForceEnabled = true
 				end
@@ -296,6 +303,8 @@ game:GetService("RunService").RenderStepped:Connect(function()
 		if GrabbingL ~= nil then
 		GrabbingL:Destroy()
 			GrabbingL = nil
+			fakeanchorl:Destroy()
+			fakeanchorl = nil
 			align.ReactionForceEnabled = false
 			end
 		end
@@ -304,7 +313,12 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			if GrabRayR then
 				if (GrabRayR.Position - hand2.Position).Magnitude <= 2.5 and not GrabbingR then
 					GrabbingR = Instance.new("WeldConstraint",hand2)
-					GrabbingR.Part0 = GrabRayR.Instance
+					fakeanchorr = Instance.new("Part",workspace)
+					fakeanchorr.Position = GrabRayR.Position
+					fakeanchorr.Transparency = 1
+					fakeanchorr.Anchored = true
+					fakeanchorr.CanCollide = false
+					GrabbingR.Part0 = fakeanchorr
 					GrabbingR.Part1 = hand2
 					align3.ReactionForceEnabled = true
 				end
@@ -313,6 +327,8 @@ game:GetService("RunService").RenderStepped:Connect(function()
 		if GrabbingR ~= nil then
 		GrabbingR:Destroy()
 			GrabbingR = nil
+			fakeanchorr:Destroy()
+			fakeanchorr = nil
 			align3.ReactionForceEnabled = false
 			end
 		end
