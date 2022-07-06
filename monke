@@ -319,7 +319,6 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			align.ReactionForceEnabled = false
 			end
 		end
-		end
 		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonR1) then
 			local GrabRayR = workspace:Raycast(hand2.Position, hand2.CFrame.rightVector * -5)
 			if GrabRayR then
@@ -336,7 +335,6 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			GrabbingR = nil
 			align3.ReactionForceEnabled = false
 			end
-		end
 		end
 end)
 workspace.CurrentCamera.HeadScale = 1.5
