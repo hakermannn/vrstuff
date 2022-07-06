@@ -293,6 +293,44 @@ end)
 hand2.TouchEnded:Connect(function(what)
 align3.ReactionForceEnabled = false
 end)
+local inputService = game:GetService("UserInputService")
+local Gamepad = Enum.UserInputType.Gamepad1
+local GrabbingL = nil
+local GrabbingR = nil
+game:GetService("RunService").RenderStepped:Connect(function()
+		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonL1) then
+			local GrabRayL = workspace:Raycast(hand.Position, hand.CFrame.rightVector * 5)
+			if GrabRayL then
+				if (GrabRayL.Position - hand.Position).Magnitude <= 2.5 and not GrabbingL then
+				        GrabbingL = Instance.new("WeldConstraint",GrabRayL.Instance)
+					GrabbingL.Part0 = hand
+					GrabbingL.Part1 = GrabRayL.Instance
+				end
+			end
+		else
+		if GrabbingL ~= nil then
+		GrabbingL:Destroy()
+			GrabbingL = nil
+			end
+		end
+		end
+		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonR1) then
+			local GrabRayR = workspace:Raycast(hand2.Position, hand2.CFrame.rightVector * -5)
+			if GrabRayR then
+				if (GrabRayR.Position - hand2.Position).Magnitude <= 2.5 and not GrabbingR then
+					GrabbingR = Instance.new("WeldConstraint",GrabRayR.Instance)
+					GrabbingR.Part0 = hand2
+					GrabbingR.Part1 = GrabRayR.Instance
+				end
+			end
+		else
+		if GrabbingR ~= nil then
+		GrabbingR:Destroy()
+			GrabbingR = nil
+			end
+		end
+		end
+end)
 workspace.CurrentCamera.HeadScale = 1.5
 game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
 	if part == Enum.UserCFrame.LeftHand then
