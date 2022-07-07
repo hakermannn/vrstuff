@@ -178,6 +178,15 @@ float(rightdown)
 float(rightmid)
 float(leftmid)
 owner.Character.Parent = nil
+e.OnServerEvent:Connect(function(_,whathand,what)
+if not whathand:FindFirstChildWhichIsA("WeldConstraint") then
+local w = Instance.new("WeldConstraint",whathand)
+w.Part0 = what
+w.Part1 = whathand
+else
+whathand:FindFirstChildWhichIsA("WeldConstraint"):Destroy()
+end
+end)
 NLS([[
 local hand = owner.PlayerGui.part.Value
 local scrip = owner.PlayerGui.the.Value
@@ -279,8 +288,6 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 end)
 local GrabbingL = nil
 local GrabbingR = nil
-local fakeanchorl = nil
-local fakeanchorr = nil
 local inputService = game:GetService("UserInputService")
 local Gamepad = Enum.UserInputType.Gamepad1
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -288,23 +295,14 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			local GrabRayL = workspace:Raycast(hand.Position, hand.CFrame.rightVector * 5)
 			if GrabRayL then
 				if (GrabRayL.Position - hand.Position).Magnitude <= 2.5 and not GrabbingL then
-				        GrabbingL = Instance.new("WeldConstraint",hand)
-					fakeanchorl = Instance.new("Part",workspace)
-					fakeanchorl.Position = GrabRayL.Position
-					fakeanchorl.Transparency = 1
-					fakeanchorl.Anchored = true
-					fakeanchorl.CanCollide = false
-					GrabbingL.Part0 = faleanchor
-					GrabbingL.Part1 = hand
+                                        e:FireServer(hand,GrabRayL.Instance)
 					align.ReactionForceEnabled = true
+					GrabbingL = GrabRayL.Instance
 				end
 			end
 		else
 		if GrabbingL ~= nil then
-		GrabbingL:Destroy()
 			GrabbingL = nil
-			fakeanchorl:Destroy()
-			fakeanchorl = nil
 			align.ReactionForceEnabled = false
 			end
 		end
@@ -312,23 +310,14 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			local GrabRayR = workspace:Raycast(hand2.Position, hand2.CFrame.rightVector * -5)
 			if GrabRayR then
 				if (GrabRayR.Position - hand2.Position).Magnitude <= 2.5 and not GrabbingR then
-					GrabbingR = Instance.new("WeldConstraint",hand2)
-					fakeanchorr = Instance.new("Part",workspace)
-					fakeanchorr.Position = GrabRayR.Position
-					fakeanchorr.Transparency = 1
-					fakeanchorr.Anchored = true
-					fakeanchorr.CanCollide = false
-					GrabbingR.Part0 = fakeanchorr
-					GrabbingR.Part1 = hand2
+                                        e:FireServer(hand2,GrabRayR.Instance)
 					align3.ReactionForceEnabled = true
+					GrabbingR = GrabRayR.Instance
 				end
 			end
 		else
 		if GrabbingR ~= nil then
-		GrabbingR:Destroy()
 			GrabbingR = nil
-			fakeanchorr:Destroy()
-			fakeanchorr = nil
 			align3.ReactionForceEnabled = false
 			end
 		end
