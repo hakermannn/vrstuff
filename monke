@@ -283,8 +283,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local _,y,_ = workspace.CurrentCamera.CFrame:ToOrientation()
 	local _,y2,_ = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head):ToOrientation()
 	torso.CFrame = CFrame.new(torso.Position) * CFrame.Angles(0,y + y2,0)
-	local inv = (torso.CFrame * CFrame.new(0,2.6,0)):Inverse() * game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head)
-	workspace.CurrentCamera.CFrame = CFrame.new(inv.Position)
+	local yp = ((torso.CFrame * CFrame.new(0,2.6,0)):Inverse() * game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head)).Position.Y
+	workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,yp,0)))
 end)
 local GrabbingL = nil
 local GrabbingR = nil
