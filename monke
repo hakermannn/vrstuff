@@ -1,4 +1,4 @@
-
+e = Instance.new("RemoteEvent",owner.PlayerGui)
 local colorparts = {}
 local belle = Instance.new("Part",script)
 belle.Anchored = true
@@ -188,6 +188,7 @@ whathand:FindFirstChildWhichIsA("WeldConstraint"):Destroy()
 end
 end)
 NLS([[
+e = script.Parent
 local hand = owner.PlayerGui.part.Value
 local scrip = owner.PlayerGui.the.Value
 local torso = owner.PlayerGui.part2.Value
@@ -337,4 +338,4 @@ game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
 		cf1 = CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
 	end
 end)
-]],owner.PlayerGui)
+]],e)
