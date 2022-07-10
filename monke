@@ -203,14 +203,12 @@ local align = Instance.new("AlignPosition",torso)
 align.Attachment0 = at0
 align.Attachment1 = at1
 align.RigidityEnabled = true
-align.ApplyAtCenterOfMass = true
 local at2 = Instance.new("Attachment",hand2)
 local at3 = Instance.new("Attachment",torso)
 local align3 = Instance.new("AlignPosition",torso)
 align3.Attachment0 = at2
 align3.Attachment1 = at3
 align3.RigidityEnabled = true
-align3.ApplyAtCenterOfMass = true
 local align2 = Instance.new("AlignOrientation",hand)
 align2.Attachment0 = at0
 align2.Attachment1 = at1
@@ -298,12 +296,16 @@ game:GetService("RunService").RenderStepped:Connect(function()
                                         e:FireServer(hand,GrabRayL.Instance)
 					align.ReactionForceEnabled = true
 					GrabbingL = GrabRayL.Instance
+					align2.Attachment0 = at1
+align2.Attachment1 = at0
 				end
 			end
 		else
 		if GrabbingL ~= nil then
 			GrabbingL = nil
 			align.ReactionForceEnabled = false
+			align2.Attachment0 = at0
+align2.Attachment1 = at1
 			end
 		end
 		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonR1) then
@@ -313,12 +315,16 @@ game:GetService("RunService").RenderStepped:Connect(function()
                                         e:FireServer(hand2,GrabRayR.Instance)
 					align3.ReactionForceEnabled = true
 					GrabbingR = GrabRayR.Instance
+					align4.Attachment0 = at3
+align4.Attachment1 = at2
 				end
 			end
 		else
 		if GrabbingR ~= nil then
 			GrabbingR = nil
 			align3.ReactionForceEnabled = false
+			align4.Attachment0 = at2
+align4.Attachment1 = at3
 			end
 		end
 end)
