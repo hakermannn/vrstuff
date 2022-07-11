@@ -283,8 +283,8 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local _,y,_ = workspace.CurrentCamera.CFrame:ToOrientation()
 	local _,y2,_ = game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head):ToOrientation()
 	torso.CFrame = CFrame.new(torso.Position) * CFrame.Angles(0,y + y2,0)
-	local yp = (torso.CFrame:Inverse() * game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head)).Position.Y
-	workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,-yp + 2.6,0)).Position)
+	local yp = torso.Position.Y - game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
+	workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,(yp) + 2.6,0)).Position)
 end)
 local GrabbingL = nil
 local GrabbingR = nil
@@ -298,16 +298,14 @@ game:GetService("RunService").RenderStepped:Connect(function()
                                         e:FireServer(hand,GrabRayL.Instance)
 					align.ReactionForceEnabled = true
 					GrabbingL = GrabRayL.Instance
-					align2.Attachment0 = at1
-align2.Attachment1 = at0
+align2.Enabled = false
 				end
 			end
 		else
 		if GrabbingL ~= nil then
 			GrabbingL = nil
 			align.ReactionForceEnabled = false
-			align2.Attachment0 = at0
-align2.Attachment1 = at1
+align2.Enabled = true
 			end
 		end
 		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonR1) then
@@ -317,16 +315,14 @@ align2.Attachment1 = at1
                                         e:FireServer(hand2,GrabRayR.Instance)
 					align3.ReactionForceEnabled = true
 					GrabbingR = GrabRayR.Instance
-					align4.Attachment0 = at3
-align4.Attachment1 = at2
+align4.Enabled = false
 				end
 			end
 		else
 		if GrabbingR ~= nil then
 			GrabbingR = nil
 			align3.ReactionForceEnabled = false
-			align4.Attachment0 = at2
-align4.Attachment1 = at3
+align4.Enabled = true
 			end
 		end
 end)
