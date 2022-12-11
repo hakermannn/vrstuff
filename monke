@@ -178,13 +178,12 @@ float(rightdown)
 float(rightmid)
 float(leftmid)
 owner.Character.Parent = nil
-e.OnServerEvent:Connect(function(_,whathand,what)
-if not whathand:FindFirstChildWhichIsA("WeldConstraint") then
-local w = Instance.new("WeldConstraint",whathand)
-w.Part0 = what
-w.Part1 = whathand
-else
-whathand:FindFirstChildWhichIsA("WeldConstraint"):Destroy()
+e.OnServerEvent:Connect(function(_,force)
+if force > 1 then
+s.Pitch = 1 + math.random(-30,30)/200
+s.Volume = 0.8 + (force * 0.1)
+s.Parent = part2
+s.Parent = nil
 end
 end)
 NLS([[
@@ -198,18 +197,18 @@ local rightup = owner.PlayerGui.ru.Value
 local rightdown = owner.PlayerGui.rd.Value
 local hand2 = owner.PlayerGui.part3.Value
 local at0 = Instance.new("Attachment",hand)
-local at1 = Instance.new("Attachment",torso)
+local at1 = Instance.new("Attachment",workspace.Terrain)
 workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 local align = Instance.new("AlignPosition",torso)
 align.Attachment0 = at0
 align.Attachment1 = at1
-align.RigidityEnabled = true
+align.Responsiveness = 150
 local at2 = Instance.new("Attachment",hand2)
-local at3 = Instance.new("Attachment",torso)
+local at3 = Instance.new("Attachment",workspace.Terrain)
 local align3 = Instance.new("AlignPosition",torso)
 align3.Attachment0 = at2
 align3.Attachment1 = at3
-align3.RigidityEnabled = true
+align3.Responsiveness = 150
 local align2 = Instance.new("AlignOrientation",hand)
 align2.Attachment0 = at0
 align2.Attachment1 = at1
@@ -262,8 +261,6 @@ co.Part1 = v
 end
 end
 game:GetService("RunService").RenderStepped:Connect(function()
-at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
-at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local goalPosition = (hand.CFrame * CFrame.new(0,0.125,0) * CFrame.Angles(math.rad(-90),0,0)).Position
         local goalPosition2 = (hand2.CFrame * CFrame.new(0,0.125,0) * CFrame.Angles(math.rad(-90),0,0)).Position
 	local upperV3 = VECTOR3_UP * leftup.Size
@@ -286,46 +283,6 @@ at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
 	local yp = torso.Position.Y - game:GetService("VRService"):GetUserCFrame(Enum.UserCFrame.Head).Position.Y
 	workspace.CurrentCamera.CFrame = CFrame.new((torso.CFrame * CFrame.new(0,(yp) + 2.6,0)).Position)
 end)
-local GrabbingL = nil
-local GrabbingR = nil
-local inputService = game:GetService("UserInputService")
-local Gamepad = Enum.UserInputType.Gamepad1
-game:GetService("RunService").RenderStepped:Connect(function()
-		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonL1) then
-			local GrabRayL = workspace:Raycast(hand.Position, hand.CFrame.rightVector * 5)
-			if GrabRayL then
-				if (GrabRayL.Position - hand.Position).Magnitude <= 2.5 and not GrabbingL then
-                                        e:FireServer(hand,GrabRayL.Instance)
-					align.ReactionForceEnabled = true
-					GrabbingL = GrabRayL.Instance
-align2.Enabled = false
-				end
-			end
-		else
-		if GrabbingL ~= nil then
-			GrabbingL = nil
-			align.ReactionForceEnabled = false
-align2.Enabled = true
-			end
-		end
-		if inputService:IsGamepadButtonDown(Gamepad, Enum.KeyCode.ButtonR1) then
-			local GrabRayR = workspace:Raycast(hand2.Position, hand2.CFrame.rightVector * -5)
-			if GrabRayR then
-				if (GrabRayR.Position - hand2.Position).Magnitude <= 2.5 and not GrabbingR then
-                                        e:FireServer(hand2,GrabRayR.Instance)
-					align3.ReactionForceEnabled = true
-					GrabbingR = GrabRayR.Instance
-align4.Enabled = false
-				end
-			end
-		else
-		if GrabbingR ~= nil then
-			GrabbingR = nil
-			align3.ReactionForceEnabled = false
-align4.Enabled = true
-			end
-		end
-end)
 workspace.CurrentCamera.HeadScale = 1.5
 game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
 	if part == Enum.UserCFrame.LeftHand then
@@ -334,4 +291,76 @@ game:GetService("VRService").UserCFrameChanged:Connect(function(part, move)
 		cf1 = CFrame.new(move.Position * 1.5) * CFrame.Angles(move:ToEulerAnglesXYZ())
 	end
 end)
+function spring_movement(spring_constant, mass, displacement)
+    local force = spring_constant * displacement
+    local acceleration = force / mass
+    return acceleration
+end
+local uis = game:GetService("UserInputService")
+local lastis = false
+local lastis2 = false
+while game:GetService("RunService").RenderStepped:Wait() do
+at1.WorldCFrame = camera.CFrame * cf * CFrame.Angles(math.rad(90),0,0)
+at3.WorldCFrame = camera.CFrame * cf1 * CFrame.Angles(math.rad(90),0,0)
+local vel = math.clamp(spring_movement(120,torso:GetMass(),((at1.WorldPosition - hand.Position)).Magnitude),-30 * 3,30 * 3)
+vel = -vel
+local vel2 = math.clamp(spring_movement(120,torso:GetMass(),((at3.WorldPosition - hand2.Position)).Magnitude),-30 * 3,30 * 3)
+vel2 = -vel2
+coroutine.wrap(function()
+local a = hand:GetTouchingParts()
+local is = false
+if #a > 0 then
+for i,v in pairs(a) do
+if v.CanCollide == true and v.Parent ~= part.Parent then
+is = true
+end
+end
+end
+if is and not lastis then
+e:FireServer(-vel * 0.5)
+lastis = true
+end
+if is == true then
+torso.Velocity = torso.Velocity * 0.9 + ((CFrame.Angles(CFrame.new(hand.Position,at1.WorldPosition):ToEulerAnglesXYZ()).lookVector * vel))
+hand2.Velocity = part.Velocity
+hand.Velocity = part.Velocity
+else
+if lastis then
+torso.Velocity = torso.Velocity * 0.9 + ((CFrame.Angles(CFrame.new(hand.Position,at1.WorldPosition):ToEulerAnglesXYZ()).lookVector * vel))
+hand2.Velocity = part.Velocity
+hand.Velocity = part.Velocity
+lastis = false
+end
+end
+end)()
+
+coroutine.wrap(function()
+local a = hand2:GetTouchingParts()
+local is = false
+if #a > 0 then
+for i,v in pairs(a) do
+if v.CanCollide == true and v.Parent ~= part.Parent then
+is = true
+end
+end
+end
+if is and not lastis2 then
+e:FireServer(-vel * 0.5)
+lastis2 = true
+end
+if is == true then
+torso.Velocity = torso.Velocity * 0.9 + ((CFrame.Angles(CFrame.new(hand2.Position,at3.WorldPosition):ToEulerAnglesXYZ()).lookVector * vel))
+hand2.Velocity = part.Velocity
+hand.Velocity = part.Velocity
+else
+if lastis2 then
+torso.Velocity = torso.Velocity * 0.9 + ((CFrame.Angles(CFrame.new(hand2.Position,at3.WorldPosition):ToEulerAnglesXYZ()).lookVector * vel))
+hand2.Velocity = part.Velocity
+hand.Velocity = part.Velocity
+lastis2 = false
+end
+end
+end)()
+
+end
 ]],e)
